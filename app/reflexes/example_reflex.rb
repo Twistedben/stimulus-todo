@@ -20,4 +20,23 @@ class ExampleReflex < ApplicationReflex
   #   end
   #
   # Learn more at: https://docs.stimulusreflex.com
+  def toggle
+    todo = Todo.find(element.dataset[:id])
+    todo.update(completed_at: (todo.completed_at? ? nil : Time.current))
+  end
+
+  def form 
+    @todo = Todo.new(description: element[:value])
+    @todo.valid?
+    # @todo.errors.add(:description, "Can't write Blah") == false if element[:value] == "blah"
+  end 
+
+  def delete
+    @todo = Todo.find(element.dataset[:id])&.destroy
+  end 
+
+  def edit 
+    @todo = Todo.find(element.dataset[:id])
+    @todo.update(description: "edited")
+  end 
 end

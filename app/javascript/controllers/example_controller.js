@@ -1,5 +1,5 @@
 import ApplicationController from './application_controller'
-
+import Velocity from 'velocity-animate'
 /* This is the custom StimulusReflex controller for ExampleReflex.
  * Learn more at: https://docs.stimulusreflex.com
  */
@@ -34,4 +34,21 @@ export default class extends ApplicationController {
   //   console.error('updateError', error);
   //   element.innerText = 'Update Failed!'
   // }
+  startEdit(element, reflex) {
+    console.log('test')
+    console.log(reflex)
+    console.log(element)
+    console.log(this.element)
+    console.log(this)
+    this.element.classList.add('text-danger')
+    this.stimulate('ExampleReflex#edit')
+  }
+  afterEdit(element) {
+    this.highlight("tr")
+  }
+  highlight (element) {
+    Velocity(element, { scale: 1.01, backgroundColor: '#ff9' }, 50).then(
+      Velocity(element, { scale: 1, backgroundColor: '#fff' }, 100)
+    )
+  }
 }

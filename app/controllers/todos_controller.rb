@@ -5,7 +5,7 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.all
-    @todo ||= Todo.new
+    @todo ||= Todo.new # Regular CRUD will call Todo.new, otherwise from reflex, @todo
   end
 
   # GET /todos/1

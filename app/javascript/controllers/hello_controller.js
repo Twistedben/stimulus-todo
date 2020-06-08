@@ -7,12 +7,20 @@
 //   <h1 data-target="hello.output"></h1>
 // </div>
 
-import { Controller } from "stimulus"
+import {Controller} from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "output" ]
+  static targets = [ "name" ]
 
-  connect() {
-    this.outputTarget.textContent = 'Hello, Stimulus!'
+  greet() {
+    const element = this.nameTarget
+    const name = element.value
+    console.log(element, name, this)
+    console.log(`Hello, ${this.name}!`)
   }
+
+  get name() {
+    return this.nameTarget.value
+  }
+
 }
