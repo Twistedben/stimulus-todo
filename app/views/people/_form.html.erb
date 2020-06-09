@@ -50,13 +50,14 @@
   <a href="#" data-action="clipboard#copy" class="clipboard-button">Copy to Clipboard</a>
 </div>
 
-<div data-controller="slideshow" class="row">
-  <button data-action="slideshow#previous"><--</button>
-  <button data-action="slideshow#next">--></button>
-  
-  <div data-target="slideshow.slide" class="slide">🐵</div>
-  <div data-target="slideshow.slide" class="slide">🙈</div>
-  <div data-target="slideshow.slide" class="slide">🙉</div>
-  <div data-target="slideshow.slide" class="slide">🙊</div>
 
+<div class="card p-5">
+  <div data-controller="slideshow" data-slideshow-index="1" class="row">
+    <button data-action="slideshow#previous"><--</button>
+    <button data-action="slideshow#next">--></button>
+    <div data-target="slideshow.slide" class="slide">🐵</div>
+    <div data-target="slideshow.slide" class="slide">🙈</div>
+    <div data-target="slideshow.slide" class="slide">🙉</div>
+    <div data-target="slideshow.slide" class="slide">🙊</div>
+  </div>
 </div>

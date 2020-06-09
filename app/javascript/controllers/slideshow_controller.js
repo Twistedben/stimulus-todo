@@ -1,10 +1,11 @@
-import { Controller } from "stimulus";
+import { Controller } from "stimulus"
 
-export default class Controller {
+export default class extends Controller {
   static targets = [ "slide" ]
 
   initialize() {
-    this.showSlide(0)
+    const index = parseInt(this.data.get("index")) // Essentially grabs the value from the data attribute on the controller using the name (slideshow) and then the data value
+    this.showSlide(index)
   }
 
   next() {
