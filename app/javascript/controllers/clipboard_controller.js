@@ -1,4 +1,5 @@
 import { Controller } from "stimulus";
+import anime from 'animejs'
 
 export default class extends Controller {
   static targets = [ "source" ]
