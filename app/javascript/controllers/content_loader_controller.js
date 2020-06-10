@@ -24,8 +24,6 @@ export default class extends Controller {
     }
   }
 
-  
-
   load() {
     fetch(this.data.get("url"))
       .then(response => response.text())

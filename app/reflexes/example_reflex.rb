@@ -28,7 +28,7 @@ class ExampleReflex < ApplicationReflex
   def form 
     @todo = Todo.new(description: element[:value])
     @todo.valid?
-    # @todo.errors.add(:description, "Can't write Blah") == false if element[:value] == "blah"
+    # @todo.errors.add(:description, "Can't write Blah") if element[:value] == "blah"
   end 
 
   def delete

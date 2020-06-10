@@ -1,4 +1,4 @@
-<%= form_with(model: person, local: true) do |form| %>
+<%= form_with(model: person, local: true, html: {class: "card p-4"}) do |form| %>
   <% if person.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div data-controller="people" class="field">
     <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+    <%= form.text_field :first_name, data: {reflex: "change->PersonReflex#change"} %>
   </div>
 
   <div class="field">
@@ -27,7 +27,9 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <button class="btn btn-secondary" data-id="<%= person.id %>" data-reflex="click->PersonReflex#submit">
+      Create Person
+    </button>
   </div>
 <% end %>
 
@@ -67,7 +69,7 @@
 </div>
 
 <div class="mt-5 row">
-  <div data-controller="content-loader" data-content-loader-url="/messages.html" data-content-loader-refresh-interval="5000">
+  <div data-controller="content-loader" data-content-loader-url="/people.html" data-content-loader-refresh-interval="10000">
     
   </div>
 </div>
