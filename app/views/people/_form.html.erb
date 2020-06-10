@@ -51,13 +51,23 @@
 </div>
 
 
-<div class="card p-5">
-  <div data-controller="slideshow" data-slideshow-index="1" class="row">
-    <button data-action="slideshow#previous"><--</button>
-    <button data-action="slideshow#next">--></button>
-    <div data-target="slideshow.slide" class="slide animate__animated">🐵</div>
-    <div data-target="slideshow.slide" class="slide animate__animated">🙈</div>
-    <div data-target="slideshow.slide" class="slide animate__animated">🙉</div>
-    <div data-target="slideshow.slide" class="slide animate__animated">🙊</div>
+<div class="col card p-5">
+  <div data-controller="slideshow" data-slideshow-index="0" class="row">
+  <div class="col-12">
+    <button  class="btn btn-primary" data-action="slideshow#previous"><--</button>
+    <button class="btn btn-primary" data-action="slideshow#next">--></button>
+  </div>
+    <div class="col ">
+      <div data-target="slideshow.slide" class="slide animate__animated">🐵</div>
+      <div data-target="slideshow.slide" class="slide animate__animated">🙈</div>
+      <div data-target="slideshow.slide" class="slide animate__animated">🙉</div>
+      <div data-target="slideshow.slide" class="slide animate__animated">🙊</div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-5 row">
+  <div data-controller="content-loader" data-content-loader-url="/messages.html">
+    
   </div>
 </div>
