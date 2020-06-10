@@ -18,8 +18,10 @@ export default class extends Controller {
 
   showSlide(index) {
     this.index = index
+    console.log(this.slideTargets)
     this.slideTargets.forEach((el, i) => {
       el.classList.toggle("slide--current", index == i)
+      el.classList.toggle('animate__slideInRight', index == i)
     })
   }
 }
