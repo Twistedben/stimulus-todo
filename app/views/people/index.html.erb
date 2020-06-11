@@ -1,31 +1,95 @@
-<p id="notice"><%= notice %></p>
+<div class='container'>
+  <p id="notice"><%= notice %></p>
 
-<h1>People</h1>
+  <h1>People</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @people.each do |person| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= person.first_name %></td>
-        <td><%= person.last_name %></td>
-        <td><%= person.email %></td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
-        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th colspan="3"></th>
+        <th>Poke?</th>
+        <th>Pokes</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @people.each do |person| %>
 
-<%= link_to 'New Person', new_person_path %>
+        <tr>
+
+          <td><%= person.first_name %></td>
+          <td><%= person.last_name %></td>
+          <td><%= person.email %></td>
+          <td><%= link_to 'Show', person %></td>
+          <td><%= link_to 'Edit', edit_person_path(person) %></td>
+          <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>      
+          <td>
+            <div data-controller="example">
+                    <% if person.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+            <ul>
+              <% person.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              <%= validation_status person, :poke_count %>
+            </ul>
+          </div>
+        <% end %>
+              <button type="button" data-id="<%= person.id  %>" data-reflex="click->ExampleReflex#poke">Poke</button>
+              <button type="button" data-id="<%= person.id %>" data-reflex="ExampleReflex#purge">Purge</button>
+            </div>
+          </td>
+          <td>
+            <%= person.poke_count %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Person', new_person_path %>
+
+
+  <div class="container">
+    <div data-controller="hello">
+      <input data-target="hello.name" type="text">
+      <button data-action="click->hello#greet">Greet</button>
+    </div>
+  </div>
+  <div data-controller="clipboard">
+    Pin: <input type="text" value="1234" data-target="clipboard.source" readonly /> 
+    <button class="clipboard-button" data-action="clipboard#copy">Copy to Clipboard</button>
+  </div>
+  <div data-controller="clipboard">
+    PIN: <input data-target="clipboard.source" type="text" value="3737" readonly>
+    <button data-action="clipboard#copy" class="clipboard-button">Copy to Clipboard</button>
+  </div>
+  <div class="animate__animated" data-controller="clipboard">
+    Pin: <input data-target="clipboard.source" type="text" value="3737" readonly>
+    <a href="#" data-action="clipboard#copy" class="clipboard-button">Copy to Clipboard</a>
+  </div>
+
+
+  <div class="col card p-5">
+    <div data-controller="slideshow" data-slideshow-index="0" class="row">
+    <div class="col-12">
+      <button  class="btn btn-primary" data-action="slideshow#previous"><--</button>
+      <button class="btn btn-primary" data-action="slideshow#next">--></button>
+    </div>
+      <div class="col ">
+        <div data-target="slideshow.slide" class="slide animate__animated">🐵</div>
+        <div data-target="slideshow.slide" class="slide animate__animated">🙈</div>
+        <div data-target="slideshow.slide" class="slide animate__animated">🙉</div>
+        <div data-target="slideshow.slide" class="slide animate__animated">🙊</div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,9 +1,9 @@
 import ApplicationController from './application_controller'
-import Velocity from 'velocity-animate'
 /* This is the custom StimulusReflex controller for ExampleReflex.
  * Learn more at: https://docs.stimulusreflex.com
  */
 export default class extends ApplicationController {
+
   /* Reflex specific lifecycle methods.
    * Use methods similar to this example to handle lifecycle concerns for a specific Reflex method.
    * Using the lifecycle is optional, so feel free to delete these stubs if you don't need them.
@@ -46,9 +46,25 @@ export default class extends ApplicationController {
   afterEdit(element) {
     this.highlight("tr")
   }
-  highlight (element) {
-    Velocity(element, { scale: 1.01, backgroundColor: '#ff9' }, 50).then(
-      Velocity(element, { scale: 1, backgroundColor: '#fff' }, 100)
-    )
+
+  beforePoke(element, reflex) {
+    console.log(reflex)
+    element.innerText = 'Poking...'
+    element.classList.add('btn-primary')
+  }
+  afterPoke(element) {
+    element.innerText = 'Poked!'
+  }
+  pokeSuccess(element, reflex) {
+    element.classList.add('btn-success')
+    console.log(reflex)
+  }
+  pokeError(element, reflex, error) {
+    console.error('pokeError', error);
+    element.innerText = 'Poke Failed!'
+  }
+
+  beforePurge(element) {
+    element.innerText = 'Purging...'
   }
 }

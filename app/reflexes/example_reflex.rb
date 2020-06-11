@@ -39,4 +39,14 @@ class ExampleReflex < ApplicationReflex
     @todo = Todo.find(element.dataset[:id])
     @todo.update(description: "edited")
   end 
+  def poke
+    @person = Person.find(element.dataset[:id])
+    @person.poke_count += 1 
+    @person.save 
+    
+  end 
+  def unpoke
+    @person = Person.find(element.dataset[:id])
+    @person.poke_count
+  end
 end

@@ -10,6 +10,8 @@
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "mdbootstrap": "^4.19.0",
+    "moment": "^2.26.0",
+    "moment-timezone": "^0.5.31",
     "popper.js": "^1.16.1",
     "stimulus": "^1.1.1",
     "stimulus_reflex": "^3.2.2-pre1",
