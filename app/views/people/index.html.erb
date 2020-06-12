@@ -28,20 +28,8 @@
           <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>      
           <td>
             <div data-controller="example">
-                    <% if person.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
-
-            <ul>
-              <% person.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              <%= validation_status person, :poke_count %>
-            </ul>
-          </div>
-        <% end %>
               <button type="button" data-id="<%= person.id  %>" data-reflex="click->ExampleReflex#poke">Poke</button>
-              <button type="button" data-id="<%= person.id %>" data-reflex="ExampleReflex#purge">Purge</button>
+              <button type="button" data-id="<%= person.id %>" data-reflex="click->ExampleReflex#unpoke">Unpoke</button>
             </div>
           </td>
           <td>

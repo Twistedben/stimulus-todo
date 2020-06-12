@@ -47,6 +47,7 @@ class ExampleReflex < ApplicationReflex
   end 
   def unpoke
     @person = Person.find(element.dataset[:id])
-    @person.poke_count
+    @person.poke_count -= 1
+    @person.save
   end
 end

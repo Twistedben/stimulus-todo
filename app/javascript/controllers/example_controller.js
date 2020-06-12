@@ -59,12 +59,20 @@ export default class extends ApplicationController {
     element.classList.add('btn-success')
     console.log(reflex)
   }
-  pokeError(element, reflex, error) {
+  beforeUnpoke(element, reflex) {
+    console.log(reflex)
+    element.innerText = 'Unpoking...'
+    element.classList.add('btn-primary')
+  }
+  afterUnpoke(element) {
+    element.innerText = 'Unpoked!'
+  }
+  unpokeSuccess(element, reflex) {
+    element.classList.add('btn-danger')
+    console.log(reflex)
+  }
+  unpokeError(element, reflex, error) {
     console.error('pokeError', error);
     element.innerText = 'Poke Failed!'
-  }
-
-  beforePurge(element) {
-    element.innerText = 'Purging...'
   }
 }
