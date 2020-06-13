@@ -84,4 +84,8 @@ export default class extends Controller {
       error: function (response) { }
     })
   }
+  test() {
+    console.log("test")
+    this.stimulate("CitySelector#test")
+  }
 }

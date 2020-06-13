@@ -50,4 +50,5 @@ class ExampleReflex < ApplicationReflex
     @person.poke_count -= 1
     @person.save
   end
+
 end

@@ -23,7 +23,9 @@
         <%= form.select :state_id, State.select_collection, { include_blank: true }, {
                         class: 'form-control', data: {
                                                 target: 'city-selector.state_input', 
-                                                action: 'city-selector#state_changed' 
+                                                action: 'city-selector#state_changed', 
+                                                # reflex: 'city-selector#test' 
+
                                                 }} %>
       </div>
       <div class="row">
