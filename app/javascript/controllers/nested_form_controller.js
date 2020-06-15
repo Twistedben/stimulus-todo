@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "add_task", "template" ]
+  static targets = [ "add_item", "template" ]
 
   initialize() {
 
@@ -10,7 +10,7 @@ export default class extends Controller {
   add_association(event) {
     event.preventDefault()
     let content = this.templateTarget.innerHTML.replace(/TEMPLATE_RECORD/g, Math.floor(Math.random() * 2000))
-    this.add_taskTarget.insertAdjacentHTML('beforebegin', content)
+    this.add_itemTarget.insertAdjacentHTML('beforebegin', content)
   }
 
   remove_association(event) {
