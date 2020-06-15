@@ -5,7 +5,11 @@ class AccountsController < ApplicationController
   # GET /accounts.json
   def index
     @accounts = Account.all
+    render partial: 'accounts/index', assigns: { accounts: @accounts }
   end
+
+  def all_accounts
+  end 
 
   # GET /accounts/1
   # GET /accounts/1.json
