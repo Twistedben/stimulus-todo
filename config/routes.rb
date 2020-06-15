@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :task_lists
   resources :accounts
   get "all_accounts", to: "accounts#all_accounts", as: "all_accounts"
   resources :states, only: :index do 

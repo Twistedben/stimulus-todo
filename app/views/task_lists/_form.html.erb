@@ -1,0 +1,41 @@
+<div class="container">
+  <%= form_with(model: task_list, local: true) do |form| %>
+
+    <% if task_list.errors.any? %>
+
+      <div id="error_explanation">
+        <h2><%= pluralize(task_list.errors.count, "error") %> prohibited this task_list from being saved:</h2>
+
+        <ul>
+          <% task_list.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <h1>Tasks</h1>
+    <div data-controller="nested-form">
+      <template data-target="nested-form.template">
+        <%= form.fields_for :tasks, Task.new, child_index: 'TEMPLATE_RECORD' do |task| %>
+          <%= render 'task_fields', form: task %>
+        <% end %>
+      </template>
+      <%= form.fields_for :tasks do |task| %>
+        <%= render 'task_fields', form: task %>
+      <% end %>
+      <div data-target="nested-form.add_item">
+        <%= link_to "Add Task", "#", data: {action: "nested-form#add_association" }%>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>

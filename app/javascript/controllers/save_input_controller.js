@@ -13,7 +13,7 @@ export default class extends Controller {
       url: this.url(),
       dataType: 'json',
       data: data,
-      success: (response) => {console.log('Setting saved')},
+      success: (response) => {console.log('Setting saved', JSON.stringify(response))},
       error: (err) => {console.log('Setting not saved, error', err)}
     })
   }

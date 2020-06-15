@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_180915) do
+ActiveRecord::Schema.define(version: 2020_06_15_212055) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
@@ -53,6 +53,20 @@ ActiveRecord::Schema.define(version: 2020_06_15_180915) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "task_lists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "task_list_id", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_list_id"], name: "index_tasks_on_task_list_id"
+  end
+
   create_table "todos", force: :cascade do |t|
     t.string "description"
     t.datetime "completed_at"
@@ -63,4 +77,5 @@ ActiveRecord::Schema.define(version: 2020_06_15_180915) do
   add_foreign_key "accounts", "cities"
   add_foreign_key "cities", "counties"
   add_foreign_key "counties", "states"
+  add_foreign_key "tasks", "task_lists"
 end
