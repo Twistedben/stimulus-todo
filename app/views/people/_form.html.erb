@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-  <div data-controller="people" class="field">
+  <div class="field">
     <%= form.label :first_name %>
-    <%= form.text_field :first_name, data: {reflex: "change->PersonReflex#change"} %>
+    <%= form.text_field :first_name %>
   </div>
 
   <div class="field">
@@ -26,8 +26,25 @@
     <%= form.text_field :email %>
   </div>
 
+  <% if person.persisted? %>
+    <div data-controller="save-input" class="form-group">
+      <%= form.label :host_video %>
+      <%= form.check_box :host_video, data: { target: "save-input.input_field", action: 'click->save-input#save_changes' } %>
+    </div>
+
+    <div data-controller="save-input" class="form-group">
+      <%= form.label :participants_video %>
+      <%= form.check_box :participants_video, data: { target: "save-input.input_field", action: 'click->save-input#save_changes' } %>
+    </div>
+
+    <div data-controller="save-input" class="form-group">
+      <%= form.label :join_before_host %>
+      <%= form.check_box :join_before_host, data: { target: "save-input.input_field", action: 'click->save-input#save_changes' } %>
+    </div>
+  <% end %>
+
   <div class="actions">
-    <button class="btn btn-secondary" data-id="<%= person.id %>" data-reflex="click->PersonReflex#submit">
+    <button class="btn btn-secondary">
       Create Person
     </button>
   </div>
