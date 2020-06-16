@@ -14,7 +14,7 @@ export default class extends Controller {
     let errors = validate(this.formTarget, this.constraints())
 
     if (errors == null) {
-      this.formTarget.subnit()
+      this.formTarget.submit()
     } else {
       this.showErrors(errors || {})
     }
@@ -22,7 +22,8 @@ export default class extends Controller {
 
   showErrors(errors) {
     for (let input of this.inputTargets) {
-      console.log(errors[input.name])
+      // console.log(errors[input.name])
+      this.showErrorsOnInput(input, errors[input.name])
     }
   }
 
@@ -32,5 +33,31 @@ export default class extends Controller {
       constraints[input.name] = JSON.parse(input.getAttribute('data-validate'))
     }
     return constraints
+  }
+
+  showErrorsOnInput(input, errors) {
+    this.clearErrors(input)
+    if (errors) {
+      input.parentElement.classList.add('has-error')
+      this.insertErrorMessages(input, errors)
+    } else {
+      input.parentElement.classList.remove('has-error')
+      input.parentElement.classList.add('has-success')
+    }
+  }
+
+  clearErrors(input) {
+    let inputId = document.getElementById(`error_${input.name}`) 
+    if (inputId != null) {
+      inputId.remove()
+    }
+  }
+
+  insertErrorMessages(input, errors) {
+    let html = document.createElement("div")
+    html.innerHTML = errors.join(' ')
+    html.id = `error_${input.name}`
+    input.after(html)
+
   }
 }

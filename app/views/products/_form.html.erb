@@ -12,19 +12,19 @@
       </div>
     <% end %>
 
-    <div class="field">
+    <div class="field mb-3">
       <%= form.label :name %>
       <%= form.text_field :name, data: {target: 'validate.input', validate: { presence: { message: '^Name is required' } } } %>
     </div>
 
-    <div class="field">
+    <div class="field mb-3">
       <%= form.label :price %>
-      <%= form.text_field :price, data: {target: 'validate.input', validate: { presence: true, numericality: { greaterThan: 0, message: '^Price has to be above zero' } } } %>
+      <%= form.text_field :price, data: {target: 'validate.input', validate: { presence: { message: '^Price is required' }, numericality: { greaterThan: 0, message: '^Price has to be above zero' } } } %>
     </div>
 
-    <div class="field">
+    <div class="field mb-3">
       <%= form.label :quantity %>
-      <%= form.number_field :quantity, data: {target: 'validate.input', validate: { presence: { message: '^Quantity is required' }, numericality: { lessThan: 10, message: '^No enough in stock'} } } %>
+      <%= form.number_field :quantity, data: {target: 'validate.input', validate: { presence: { message: '^Quantity is required' }, numericality: { lessThan: 10, message: '^Not enough in stock'} } } %>
     </div>
 
     <div class="actions">
